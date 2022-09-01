@@ -1,3 +1,9 @@
 import * as React from "react";
 import { ChakraProvider } from "@chakra-ui/react";
-export const App = () => <ChakraProvider></ChakraProvider>;
+import Navbar from "./components/navbar";
+
+export const App = () => (
+  <ChakraProvider>
+    <Navbar />
+  </ChakraProvider>
+);
