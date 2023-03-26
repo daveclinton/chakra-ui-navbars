@@ -10,12 +10,13 @@ const Navbar: React.FC = () => {
       top={0}
       left={0}
       alignItems="center"
-      justifyContent="center"
+      justifyContent={{ base: "space-between", lg: "center" }}
       width="100%"
       height="64px"
       bg="#19191c"
       color="#f9f9f9"
       boxSizing="border-box"
+      p={{ base: "0 0 0 16px", lg: "auto" }}
     >
       <Box as="span"></Box>
       <Button>
