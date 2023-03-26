@@ -1,8 +1,10 @@
 import * as React from "react";
-import { Box, Flex, Heading } from "@chakra-ui/layout";
+import { Flex, Heading } from "@chakra-ui/layout";
 import { Button } from "@chakra-ui/button";
 
 const Navbar: React.FC = () => {
+  const [isOpen, toggleMenu] = React.useState(false);
+
   return (
     <Flex
       pos="fixed"
@@ -10,7 +12,7 @@ const Navbar: React.FC = () => {
       top={0}
       left={0}
       alignItems="center"
-      justifyContent={{ base: "space-between", lg: "center" }}
+      justifyContent={{ base: "center", md: "space-between" }}
       width="100%"
       height="64px"
       bg="#19191c"
@@ -18,40 +20,108 @@ const Navbar: React.FC = () => {
       boxSizing="border-box"
       p={{ base: "0 0 0 16px", lg: "auto" }}
     >
-      <Box as="span"></Box>
-      <Button>
-        <span>Menu</span>
+      <Button
+        border={0}
+        bg="transparent"
+        color="inherit"
+        cursor="pointer"
+        pos="absolute"
+        top={0}
+        left={0}
+        placeItems="center"
+        width="64px"
+        height="64px"
+        display={{ md: "none" }}
+        onClick={() => toggleMenu(!isOpen)}
+      >
+        <span className="material-icons">Menu</span>
       </Button>
-      <Heading>Awards</Heading>
-      <Flex>
-        <Button
-          border={0}
-          p={0}
-          bg="transparent"
-          color="inherit"
-          cursor="pointer"
+      <Heading fontSize="16px">Awards</Heading>
+      {isOpen ? (
+        <Flex
+          pos="fixed"
+          zIndex={3}
+          top="0"
+          left={0}
+          w="270px"
+          h="100%"
+          p="20px"
+          gap="8px"
+          flexDir="column"
+          alignItems="flex-start"
+          bg="#000000"
+          transition="translate 0.3s"
+          visibility={{ md: "hidden" }}
         >
-          Skills
-        </Button>
-        <Button
-          border={0}
-          p={0}
+          <Button
+            border={0}
+            p={0}
+            bg="transparent"
+            color="inherit"
+            cursor="pointer"
+          >
+            Skills
+          </Button>
+          <Button
+            border={0}
+            p={0}
+            bg="transparent"
+            color="inherit"
+            cursor="pointer"
+          >
+            Awards
+          </Button>
+          <Button
+            border={0}
+            p={0}
+            bg="transparent"
+            color="inherit"
+            cursor="pointer"
+          >
+            Projects
+          </Button>
+        </Flex>
+      ) : (
+        <Flex
+          display={{ base: "none", md: "block" }}
+          pos="static"
+          w="auto"
           bg="transparent"
-          color="inherit"
-          cursor="pointer"
+          flexDir="row"
         >
-          Awards
-        </Button>
-        <Button
-          border={0}
-          p={0}
-          bg="transparent"
-          color="inherit"
-          cursor="pointer"
-        >
-          Projects
-        </Button>
-      </Flex>
+          <Button
+            border={0}
+            p="0 8px"
+            bg="transparent"
+            color="rgba(255, 255, 255, 0.5)"
+            cursor="pointer"
+            _active={{ color: "inherit" }}
+          >
+            Skills
+          </Button>
+
+          <Button
+            border={0}
+            p="0 8px"
+            bg="transparent"
+            color="rgba(255, 255, 255, 0.5)"
+            cursor="pointer"
+            _active={{ color: "inherit" }}
+          >
+            Awards
+          </Button>
+          <Button
+            border={0}
+            p="0 8px"
+            bg="transparent"
+            color="rgba(255, 255, 255, 0.5)"
+            cursor="pointer"
+            _active={{ color: "inherit" }}
+          >
+            Projects
+          </Button>
+        </Flex>
+      )}
     </Flex>
   );
 };
